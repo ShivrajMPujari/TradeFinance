@@ -1,0 +1,65 @@
+
+    <div layout="row" layout-align="center">
+
+        <md-card style="width:40%">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Login Form</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+              <p style="color:red" ng-show =loginFailed>Login failed ..email or password is wrong</p>
+                <form name="loginForm" >
+                    <div layout="column">
+
+                        <md-input-container>
+                            <label>Email Id</label>
+                            <input type="email" name="userEmail" ng-model="userEmail" ng-pattern="/^[^\s@_]+[^\s]+@[^\s@]+\.[^\s@]{2,}$/" required>
+
+                            <!-- <span style="color:Red" ng-show="userForm.userEmail.$dirty&&userForm.userEmail.$error.pattern">Please Enter Valid Email</span> -->
+                            <div ng-messages="loginForm.userEmail.$error">
+                                <div ng-message="required">
+                                    You email is required.
+                                </div>
+                                <div ng-message="pattern">
+                                  Please Enter Valid Email.
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label>Password</label>
+                            <input type="password" name="Password" ng-minlength="5" ng-model="userPassword" required>
+                            <div ng-messages="loginForm.Password.$error">
+                                <div ng-message="required">
+                                    Your password is required.
+                                </div>
+                                <div ng-message="minlength">
+                                    Your password should consist of atleast 5 characters.
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-card-content>
+                            <md-card-actions layout="row" layout-align="center">
+                                <md-button ng-click="submitLoginForm()" ng-disabled="loginForm.$invalid" class="md-raised md-primary">login</md-button>
+                            </md-card-actions>
+
+                            <p>
+                              <md-card-actions layout="row" layout-align="center">
+                                   <md-button ng-click="goToRegisteration()">register</md-button>
+                              </md-card-actions>
+
+
+                              <md-card-actions layout="row" layout-align="center">
+                                  <md-button ng-click="goToForgotPassword()">forgot password</md-button>
+                              </md-card-actions>
+                            </p>
+
+                          <md-card-content>
+                    </div>
+                </form>
+
+            </md-card-content>
+        </md-card>
+    </div>

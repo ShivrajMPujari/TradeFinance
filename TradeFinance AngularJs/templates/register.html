@@ -1,0 +1,122 @@
+<div layout="row" layout-align="center">
+
+    <md-card style="width:40%">
+      <md-card-title>
+          <md-card-title-text>
+              <span class="md-headline">Registeration Form</span>
+          </md-card-title-text>
+      </md-card-title>
+        <md-card-content>
+            <form name="userForm" >
+                <div layout="column">
+
+                    <md-input-container class="inputContainers">
+                        <label>UserName</label>
+                        <input type="text" name="username" ng-minlength="4" ng-model="registerUsername" required>
+                        <div ng-messages="userForm.username.$error">
+                            <div ng-message="required">
+                                your username is required.
+                            </div>
+                            <div ng-message="minlength">
+                              your username must be atleat 4 characters
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container  class="inputContainers">
+                        <label>Email Id</label>
+                        <input type="email" name="userEmail" ng-model="registerEmail" ng-pattern="/^[^\s@_]+[^\s]+@[^\s@]+\.[^\s@]{2,}$/" required>
+
+                        <!-- <span style="color:Red" ng-show="userForm.userEmail.$dirty&&userForm.userEmail.$error.pattern">Please Enter Valid Email</span> -->
+                        <div ng-messages="userForm.userEmail.$error">
+                            <div ng-message="required">
+                                You email is required.
+                            </div>
+                            <div ng-message="pattern">
+                              Please Enter Valid Email.
+                            </div>
+                        </div>
+                    </md-input-container  >
+
+                    <md-input-container class="inputContainers">
+                        <label>Role</label>
+                        <md-select ng-model="registerRole" name="role" required>
+                          <md-option ng-repeat="role in roles" value="{{role}}">{{role}}</md-option>
+                        </md-select>
+                        <div ng-messages="userForm.role.$error">
+                            <div ng-message="required">
+                                You role is required.
+                            </div>
+                        </div>
+                      </md-input-container>
+
+                    <md-input-container class="inputContainers">
+                        <label>Password</label>
+                        <input type="password" name="password" ng-minlength="5"  ng-model="registerPassword" required>
+                        <div ng-messages="userForm.password.$error">
+                            <div ng-message="required">
+                                Your password is required.
+                            </div>
+                            <div ng-message="minlength">
+                                Your password must be atleast 5 characters
+                            </div>
+
+                        </div>
+                    </md-input-container>
+                  <p style="color:red" ng-show =confirmPassword> your password is not matching </p>
+
+                    <md-input-container class="inputContainers">
+                        <label>Retype-Password</label>
+                        <input type="password" name="retypePassword" ng-model="registerConfirmPassword" ng-minlength="5" required>
+                        <div ng-messages="userForm.retypePassword.$error">
+                            <div ng-message="required">
+                                You password is required.
+                            </div>
+                            <div ng-message="minlength">
+                                Your password must be atleast 5 characters
+                            </div>
+
+                        </div>
+                    </md-input-container>
+
+                  <div layout="row" layout-align="start" flex>
+
+                    <md-input-container class="inputContainers" flex="50">
+                        <label>city</label>
+                        <input type="text" name="city" ng-minlength="4" ng-model="registerCity" required>
+                        <div ng-messages="userForm.city.$error">
+                            <div ng-message="required">
+                              your  city name is required.
+                            </div>
+                            <div ng-message="minlength">
+                              your city name must be atleat 4 characters
+                            </div>
+                        </div>
+                    </md-input-container>
+
+
+                    <md-input-container class="inputContainers" flex="50">
+                        <label>Mobile no.</label>
+                        <input type="text" name="mobileNo" ng-minlength="10" ng-model="registerMobileNo" required>
+                        <div ng-messages="userForm.mobileNo.$error">
+                            <div ng-message="required">
+                              your  mobileNo name is required.
+                            </div>
+                            <div ng-message="minlength">
+                              your mobileNo name must be atleat 4 characters
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                  </div>
+
+                        <md-card-actions layout="row" layout-align="center">
+                            <md-button ng-click="getRegistered()" ng-disabled="userForm.$invalid" class="md-raised md-primary">register</md-button>
+                        </md-card-actions>
+
+                </div>
+            </form>
+
+        </md-card-content>
+    </md-card>
+</div>
