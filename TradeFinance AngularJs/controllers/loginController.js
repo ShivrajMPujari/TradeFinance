@@ -1,4 +1,4 @@
-app.controller('loginController', function($scope, $state , $http ,$mdToast ,$document) {
+app.controller('loginController', function($scope, $state , $http ,$mdToast ,$document , $stateParams) {
 
 
   //show toast on login failure
@@ -9,6 +9,15 @@ app.controller('loginController', function($scope, $state , $http ,$mdToast ,$do
         .hideDelay(3000)
      );
    }
+
+
+   $scope.showToastForResetSuccess = function() {
+      $mdToast.show (
+         $mdToast.simple()
+         .textContent('Your has been reset sucessfully ..')
+         .hideDelay(3500)
+      );
+    }
 
    $scope.showToastAccountExist = function() {
       $mdToast.show (
@@ -91,13 +100,47 @@ app.controller('loginController', function($scope, $state , $http ,$mdToast ,$do
 
     }
 
-
     $scope.goToLogin = function(){
       $state.go('login');
     }
 
     $scope.goToForgotPassword = function(){
       $state.go('forgotPassword');
+    }
+
+
+      $scope.resetFormPasswordMsg=false;
+    $scope.submitResetPassword = function(){
+
+      if($scope.resetFormPassword==$scope.resetFormConfirmPassword){
+
+        console.log($stateParams.id);
+        var resetPasswordData = {
+
+          newPassword:$scope.resetFormPassword,
+          uuid:$stateParams.id
+
+        };
+        var resetPasswordUrl ='http://localhost:8080/user/resetPassword';
+        $http.post(resetPasswordUrl,resetPasswordData).then(
+          function(response){
+            console.log(response);
+            $state.go('login');
+            $scope.showToastForResetSuccess();
+          }
+          ,function(reason){
+            console.log(reason);
+            $state.go('sessionOut');
+          });
+
+
+      }else{
+        $scope.resetFormPasswordMsg=true;
+      }
+
+
+
+
     }
 
 

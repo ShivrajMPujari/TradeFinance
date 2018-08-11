@@ -34,6 +34,12 @@ app.config(function($stateProvider,$urlRouterProvider){
         templateUrl:'templates/ForgotPassword.html',
         controller:'loginController'
       } )
+
+      .state('resetPassword',{
+        url:'/reset_password/:id',
+        templateUrl:'templates/resetPassword.html',
+        controller:'loginController'
+      })
       ;
 
       $urlRouterProvider.otherwise('/login');
