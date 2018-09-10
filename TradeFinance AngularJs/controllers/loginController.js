@@ -1,4 +1,4 @@
-app.controller('loginController', function($scope, $state , $http ,$mdToast ,$document , $stateParams) {
+app.controller('loginController', function($scope, $state , $http ,$mdToast ,$document , $stateParams,loginService) {
 
     $scope.showToastCommon = function(message) {
        $mdToast.show (
@@ -23,6 +23,11 @@ app.controller('loginController', function($scope, $state , $http ,$mdToast ,$do
         $http.post(loginUrl,formData).then(
           function(response){
             console.log(response);
+            userObj = loginService.clearStorageOnLogin("user");
+            userObj=response.data.user;
+            console.log(userObj);
+              userJsonString = JSON.stringify(userObj);
+              localStorage.setItem("user",userJsonString);
             $scope.showToastCommon(response.data.message);
             $state.go('home');
           },
@@ -43,11 +48,13 @@ app.controller('loginController', function($scope, $state , $http ,$mdToast ,$do
 
     $scope.confirmPassword=false;
 
-
+    var bankArray =['SBI','BOI','CANARA'];
+    $scope.banks = bankArray;
 
     $scope.getRegistered = function(){
 
       if($scope.registerPassword==$scope.registerConfirmPassword){
+        let roleStr= $scope.registerRole;
         var registerFormData = {
 
           "name":$scope.registerUsername,
@@ -55,8 +62,8 @@ app.controller('loginController', function($scope, $state , $http ,$mdToast ,$do
           "password":$scope.registerPassword,
           "mobileNo":$scope.registerMobileNo,
           "city":$scope.registerCity,
-          "role":$scope.registerRole,
-
+          "role":roleStr.toLowerCase(),
+          "bank":$scope.registerBank,
         }
 
         var registerUrl = 'http://localhost:8080/user/register';

@@ -38,17 +38,36 @@
                         </div>
                     </md-input-container  >
 
-                    <md-input-container class="inputContainers">
-                        <label>Role</label>
-                        <md-select ng-model="registerRole" name="role" required>
-                          <md-option ng-repeat="role in roles" value="{{role}}">{{role}}</md-option>
-                        </md-select>
-                        <div ng-messages="userForm.role.$error">
-                            <div ng-message="required">
-                                You role is required.
+                    <div layout="row" layout-align="start" flex>
+
+
+                      <md-input-container class="inputContainers" flex="50">
+                          <label>Role</label>
+                          <md-select ng-model="registerRole" name="role" required>
+                            <md-option ng-repeat="role in roles" value="{{role}}">{{role}}</md-option>
+                          </md-select>
+                          <div ng-messages="userForm.role.$error">
+                              <div ng-message="required">
+                                  Your role is required.
+                              </div>
+                          </div>
+                        </md-input-container>
+
+
+                        <md-input-container class="inputContainers" flex="50">
+                            <label>Bank</label>
+                            <md-select ng-model="registerBank" name="bank" required>
+                              <md-option ng-repeat="bank in banks" value="{{bank}}">{{bank}}</md-option>
+                            </md-select>
+                            <div ng-messages="userForm.bank.$error">
+                                <div ng-message="required">
+                                    select your bank .
+                                </div>
                             </div>
-                        </div>
-                      </md-input-container>
+                          </md-input-container>
+
+                    </div>
+
 
                     <md-input-container class="inputContainers">
                         <label>Password</label>

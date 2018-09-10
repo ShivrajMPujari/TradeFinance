@@ -23,6 +23,34 @@ app.config(function($stateProvider,$urlRouterProvider){
       }
       )
 
+      .state('home.accountInfo',{
+        url:'',
+        templateUrl:'templates/accountInfo.html',
+        controller:'homeController'
+      }
+      )
+
+      .state('home.createContract',{
+        url:'/home/createContract',
+        templateUrl:'templates/contractForm.html',
+        controller:'homeController'
+      }
+      )
+
+      .state('home.currentTransaction',{
+        url:'/home/createContract',
+        templateUrl:'templates/currentTransaction.html',
+        controller:'homeController'
+      }
+      )
+
+      .state('home.history',{
+        url:'/home/history',
+        templateUrl:'templates/allContract.html',
+        controller:'homeController'
+      }
+      )
+
       .state('sessionOut',{
         url:'/session-out',
         templateUrl:'templates/sessionOut.html',
@@ -36,7 +64,7 @@ app.config(function($stateProvider,$urlRouterProvider){
       } )
 
       .state('resetPassword',{
-        url:'/reset_password/:id',
+        url:'/reset_password/:',
         templateUrl:'templates/resetPassword.html',
         controller:'loginController'
       })
