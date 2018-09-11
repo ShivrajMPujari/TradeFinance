@@ -2,15 +2,37 @@
 <div class=userPageDiv>
   <md-card class = userPageCard>
   <div class="center">
-    <h2> welcome in {{userModel.role}} Organization, {{userModel.name}} </h2>
+  <p>  <h2> welcome in {{userModel.role}} Organization, {{userModel.name}} </h2> </p>
   </div>
 
+
+<table>
+  <tr >
+    <th>AccountInfo:-</th>
+    <th></th>
+    <th>Account no:- {{userModel.accountNumber}}</th>
+  </tr>
+  <tr>
+    <td> Username - {{userModel.name}}</td>
+    <td class="tableTd2">Email Id -  {{userModel.email}}</td>
+    <td>Role - {{userModel.role}}</td>
+  </tr>
+  <tr>
+    <td class="tableTd2">MobileNo - {{userModel.mobileNo}}</td>
+    <td>Bank - {{userModel.bank}}</td>
+    <td class="tableTd2">City - {{userModel.city}} </td>
+  </tr>
+
+</table>
+
   <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-      <md-button class="md-raised md-warn">Account Info</md-button>
-      <md-button class="md-raised md-warn">Create Contract</md-button>
-       <md-button class="md-raised md-warn">Balance info</md-button>
-        <md-button class="md-raised md-warn">All contracts</md-button>
+      <md-button class="md-raised md-warn" ng-click="goToCurrentTransaction()">current Transaction</md-button>
+      <md-button class="md-raised md-warn"  ng-disabled="{{contractButton}}" ng-click="goToCreateContract()"> Create Contract</md-button>
+       <md-button class="md-raised md-warn" ng-click="goToBalanceInfo()">Balance info</md-button>
+        <md-button class="md-raised md-warn" ng-click="goToAllContracts()">All contracts</md-button>
+
  </section>
 
+<ui-view></ui-view>
 </md-card>
 </div>

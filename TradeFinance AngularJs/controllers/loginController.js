@@ -26,10 +26,12 @@ app.controller('loginController', function($scope, $state , $http ,$mdToast ,$do
             userObj = loginService.clearStorageOnLogin("user");
             userObj=response.data.user;
             console.log(userObj);
-              userJsonString = JSON.stringify(userObj);
-              localStorage.setItem("user",userJsonString);
+            userJsonString = JSON.stringify(userObj);
+            localStorage.setItem("user",userJsonString);
             $scope.showToastCommon(response.data.message);
-            $state.go('home');
+
+            localStorage.setItem("token",response.data.token);
+            $state.go('home.balance');
           },
           function(reason){
             console.log(reason.data.message);

@@ -1,4 +1,18 @@
 
+
+table {
+    border-collapse: collapse;
+    width: 95%;
+    margin-left:  auto;
+    margin-right:  auto;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
 .userPageDiv{
   margin-top: 90px;
   margin-bottom: 100px;
@@ -12,6 +26,6 @@ width:1200px;
 }
 
 .center{
-  margin-top: 90px;
+  margin-top: 20px;
   text-align: center;
 }

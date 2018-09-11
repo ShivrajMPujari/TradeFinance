@@ -1,3 +1,145 @@
-<div>
-  contractFOrm
+<div layout="row" layout-align="center">
+
+    <md-card style="width:60%">
+      <md-card-title>
+          <md-card-title-text>
+              <span class="md-headline">Contract creation:- </span>
+          </md-card-title-text>
+      </md-card-title>
+        <md-card-content>
+            <form name="contractForm" >
+                <div layout="column">
+
+
+
+                <div layout="row" layout-align="start" flex>
+                  <md-input-container class="inputContainers" flex="30">
+                    <label>ContractID</label>
+                    <input type="text" name="contractID" ng-model="contractFormID" required>
+                    <div ng-messages="contractForm.contractID.$error">
+                        <div ng-message="required">
+                            your contractId is required.
+                        </div>
+                    </div>
+                    </md-input-container>
+
+                    <md-input-container class="inputContainers" flex="70">
+                      <label>Contract Description</label>
+                      <input type="text" name="contractDescription"  ng-model="contractFormDescription" required>
+                      <div ng-messages="contractForm.contractDescription.$error">
+                          <div ng-message="required">
+                              your contract Description is required.
+                          </div>
+                      </div>
+                      </md-input-container>
+
+                </div>
+
+
+
+                  <div layout="row" layout-align="start" flex>
+
+
+                    <md-input-container class="inputContainers" flex="50">
+                      <label>ExporterAccount</label>
+                      <input type="text" name="exporterAccount"  ng-model="userModel.accountNumber" value={{userModel.accountNumber}}  required>
+                      </md-input-container>
+
+                      <md-input-container class="inputContainers" flex="50">
+                          <label>Contract Value</label>
+                          <md-select ng-model="contractFormValue" name="contractValue" required>
+                            <md-option ng-repeat="contractvalue in contractValues"  value="{{contractvalue}}">{{contractvalue}}</md-option>
+                          </md-select>
+                          <div ng-messages="contractForm.contractValue.$error">
+                              <div ng-message="required">
+                                  select your contract value
+                              </div>
+                          </div>
+                        </md-input-container>
+
+                  </div>
+
+                  <div layout="row" layout-align="start" flex>
+                    <md-input-container class="inputContainers" flex="50">
+                      <label>Custom</label>
+                      <input type="text" name="customAccountId" ng-model="contractCustomAccountId" required>
+                      <div ng-messages="contractForm.customAccountId.$error">
+                          <div ng-message="required">
+                             custom Account Id is required.
+                          </div>
+                      </div>
+                      </md-input-container>
+
+                      <md-input-container class="inputContainers" flex="50">
+                        <label>InsuranceId</label>
+                        <input type="text" name="insuranceId"  ng-model="contractInsuranceId" required>
+                        <div ng-messages="contractForm.insuranceId.$error">
+                            <div ng-message="required">
+                                insurance Account ID is required.
+                            </div>
+                        </div>
+                        </md-input-container>
+
+                  </div>
+
+
+                  <div layout="row" layout-align="start" flex>
+                    <md-input-container class="inputContainers" flex="50">
+                      <label>Importer</label>
+                      <input type="text" name="importerAccountId" ng-model="contractImporterAccountId" required>
+                      <div ng-messages="contractForm.importerAccountId.$error">
+                          <div ng-message="required">
+                            importerAccountId is required.
+                          </div>
+                      </div>
+                      </md-input-container>
+
+                      <md-input-container class="inputContainers" flex="50">
+                        <label>ImporterBank</label>
+                        <input type="text" name="importerBankId"  ng-model="contractImporterBankAccountId" required>
+                        <div ng-messages="contractForm.importerBankId.$error">
+                            <div ng-message="required">
+                                 importerBankId is required.
+                            </div>
+                        </div>
+                        </md-input-container>
+
+                  </div>
+
+
+
+
+
+                  <div layout="row" layout-align="start" flex>
+                    <md-input-container class="inputContainers" flex="50">
+                      <label>Port of Loading </label>
+                      <input type="text" name="portOfLoading" ng-model="contractPortOfLoading" required>
+                      <div ng-messages="contractForm.portOfLoading.$error">
+                          <div ng-message="required">
+                             port Of Loading is required.
+                          </div>
+                      </div>
+                      </md-input-container>
+
+                      <md-input-container class="inputContainers" flex="50">
+                        <label>Port of Entry</label>
+                        <input type="text" name="portOfEntry"  ng-model="contractPortOfEntry" required>
+                        <div ng-messages="contractForm.importerBankId.$error">
+                            <div ng-message="required">
+                                     port Of Entry is required.
+                            </div>
+                        </div>
+                        </md-input-container>
+
+                  </div>
+
+                        <md-card-actions layout="row" layout-align="center">
+                            <md-button ng-click="getRegistered()" ng-disabled="contractForm.$invalid" class="md-raised md-primary">create</md-button>
+                        </md-card-actions>
+
+                </div>
+            </form>
+
+        </md-card-content>
+    </md-card>
 </div>
