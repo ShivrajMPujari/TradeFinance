@@ -46,9 +46,92 @@ app.controller('homeController',function($state,$scope,$http){
     $state.go('home.balance');
   }
 
-  $scope.goToAllContracts = function(){
-    $state.go('home.history');
+
+
+$scope.logout = function(){
+
+$state.go('login');
+
+}
+
+  $scope.createContract = function(){
+
+    let contractData = {
+
+    contractId :  $scope.contractFormID,
+    contractDescription:$scope.contractFormDescription,
+      importerId:$scope.contractImporterAccountId,
+      exporterId:$scope.userModel.accountNumber,
+      customId:$scope.contractCustomAccountId,
+      importerBankId:$scope.contractImporterBankAccountId,
+      insuranceId:$scope.contractInsuranceId,
+      value:$scope.contractFormValue,
+      portOfLoading:$scope.contractPortOfLoading,
+      portOfEntry:$scope.contractPortOfEntry
+
+    };
+
+    let contractCreationUrl = 'http://localhost:8080/user/createContract';
+
+    let config = {
+      headers : {
+                   'Content-Type': 'application/json',
+                   'token':localStorage.getItem("token")
+               }
+    };
+
+    $http.post(contractCreationUrl,contractData,config).then(
+      function(response){
+        console.log("success")
+        console.log(response);
+  //      localStorage.setItem("contractId",response.data.contract.contractId);
+      },
+      function(reason){
+        console.log("failed");
+        console.log(reason);
+        $state.go('login');
+      }
+
+    );
+
   }
 
+  // $scope.goToAllContracts = function(){
+  //   $state.go('home.history');
+  // }
+
+
+  $scope.goToAllContracts = function (){
+
+      let data = {};
+      let url = 'http://localhost:8080/user/getAllContract';
+
+      let config = {
+        headers : {
+                     'Content-Type': 'application/json',
+                     'token':localStorage.getItem("token")
+                 }
+      };
+
+      $http.post( url,data,config ).then(
+
+        function(response){
+          console.log("success");
+          console.log(response);
+          $state.go('home.history');
+
+        },
+        function(reason){
+          console.log("failed");
+
+          console.log(reason);
+          $state.go('login');
+        }
+
+      );
+
+  }
+
+  
 
 });

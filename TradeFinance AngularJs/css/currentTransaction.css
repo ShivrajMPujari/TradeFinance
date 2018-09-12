@@ -1,0 +1,7 @@
+.currentTransactionDiv{
+margin-top: 150px;
+}
+
+.activeAccount{
+  background-color: red;
+}
