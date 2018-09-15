@@ -1,18 +1,29 @@
 <div class="currentTransactionDiv">
 
-  <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-      <md-button class="{{button}}" ng-model="button" ng-click="changeClass()">Exporter</md-button>
-      <i class="fa fa-angle-double-right" style="font-size:48px;"></i>
-      <md-button class="button">Custom</md-button>
-      <i class="fa fa-angle-double-right" style="font-size:48px;"></i>
-       <md-button class="activeAccount " > Insurance</md-button>
-       <i class="fa fa-angle-double-right" style="font-size:48px;"></i>
-        <md-button class="button" >Importer</md-button>
-        <i class="fa fa-angle-double-right" style="font-size:48px;"></i>
-         <md-button class="button" >ImporterBank</md-button>
-         <i class="fa fa-angle-double-right" style="font-size:48px;"></i>
-          <md-button class="button" >Completed</md-button>
-  </section>
+  <div ng-repeat="contract in allContracts|activeContracts" layout-align="center center" >
 
+    <div ng-if="contract.pointer == userModel.accountNumber" >
+      <md-button> accept </md-button>
+    </div>
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+
+        <md-button ng-if ="contract.exporterCheck == true" class="{{exporterClass}}" ng-model="exporterClass">Exporter</md-button>
+        <md-button ng-if ="contract.exporterCheck == false" class="{{exporterClass}}" ng-model="exporterClass">Exporter</md-button>
+        <i class="fa fa-angle-double-right" style="font-size:48px;"></i>
+        <md-button ng-if ="contract.customCheck == true" class="{{customClass}}" ng-model="customClass">Custom</md-button>
+        <md-button ng-if ="contract.customCheck == false" class="{{customClass}}" ng-model="customClass">Custom</md-button>
+        <i class="fa fa-angle-double-right" style="font-size:48px;"></i>
+        <md-button ng-if ="contract.insuranceCheck == true" class="{{insuranceClass}}" ng-model="insuranceClass">Insurance</md-button>
+        <md-button ng-if ="contract.insuranceCheck == false" class="{{insuranceClass}}" ng-model="insuranceClass">Insurance</md-button>
+         <i class="fa fa-angle-double-right" style="font-size:48px;"></i>
+         <md-button ng-if ="contract.importerCheck == true" class="{{importerClass}}" ng-model="importerClass">Importer</md-button>
+         <md-button ng-if ="contract.importerCheck == false" class="{{importerClass}}" ng-model="importerClass">Importer</md-button>
+          <i class="fa fa-angle-double-right" style="font-size:48px;"></i>
+          <md-button ng-if ="contract.importerBankCheck == true" class="{{importerBankClass}}" ng-model="importerBankClass">importerBank</md-button>
+          <md-button ng-if ="contract.importerBankCheck == false" class="{{importerBankClass}}" ng-model="importerBankClass">importerBank</md-button>
+           <!-- <i class="fa fa-angle-double-right" style="font-size:48px;"></i>
+            <md-button class="button" >Completed</md-button> -->
+    </section>
+  </div>
 
 </div>

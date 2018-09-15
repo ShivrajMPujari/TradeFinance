@@ -1,4 +1,4 @@
-app.controller('homeController',function($state,$scope,$http){
+app.controller('homeController',function($state,$scope,$http,$mdDialog){
 
   var userString = localStorage.getItem("user");
   $scope.contractValues = [3000,5000,8000,10000];
@@ -7,9 +7,7 @@ app.controller('homeController',function($state,$scope,$http){
     $scope.contractButton=true;
   }
 
-  $scope.goToCurrentTransaction = function(){
-    $state.go('home.currentTransaction');
-  }
+
 
   $scope.goToCreateContract = function(){
     $scope.contractExporterId=$scope.userModel.accountNumber;
@@ -45,7 +43,6 @@ app.controller('homeController',function($state,$scope,$http){
 
     $state.go('home.balance');
   }
-
 
 
 $scope.logout = function(){
@@ -99,12 +96,43 @@ $state.go('login');
   // $scope.goToAllContracts = function(){
   //   $state.go('home.history');
   // }
+  $scope.goToCurrentTransaction = function(){
+
+    let mydata = {};
+    let urlAllContracts = 'http://localhost:8080/user/getAllContract';
+
+    let config = {
+      headers : {
+                   'Content-Type': 'application/json',
+                   'token':localStorage.getItem("token")
+               }
+    };
+
+    $http.post(urlAllContracts,mydata,config).then(function(response){
+
+      console.log("success");
+      console.log(response);
+      $scope.allContracts = response.data.contracts;
+        $state.go('home.currentTransaction');
+    },
+
+    function(reason){
+      console.log("failed");
+      console.log(reason);
+      $state.go('login');
+
+    }
+
+  );
+
+  }
+
 
 
   $scope.goToAllContracts = function (){
 
-      let data = {};
-      let url = 'http://localhost:8080/user/getAllContract';
+      let mydata = {};
+      let urlAllContracts = 'http://localhost:8080/user/getAllContract';
 
       let config = {
         headers : {
@@ -113,11 +141,12 @@ $state.go('login');
                  }
       };
 
-      $http.post( url,data,config ).then(
+      $http.post( urlAllContracts,mydata,config ).then(
 
         function(response){
           console.log("success");
           console.log(response);
+          $scope.allContracts = response.data.contracts;
           $state.go('home.history');
 
         },
@@ -132,6 +161,34 @@ $state.go('login');
 
   }
 
-  
+
+  $scope.showAdvanced = function(ev, item) {
+    $mdDialog.show({
+        controller: DialogController,
+        templateUrl: 'templates/contractRead.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        locals: {
+            items: item
+        },
+        fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+};
+
+function DialogController($scope, items) {
+    $scope.contract = items;
+    // $scope.star=stars;
+
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
+
+    $scope.hide = function() {
+        $mdDialog.hide();
+    };
+}
+
+
 
 });

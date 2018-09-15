@@ -3,8 +3,7 @@
   <md-card class = userPageCard>
   <div class="center">
   <p>  <h2> welcome in {{userModel.role}} Organization, {{userModel.name}} </h2> </p>
-  </div>
-
+</div>
 
 <table>
   <tr >
@@ -27,10 +26,9 @@
 
   <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
       <md-button class="md-raised md-warn" ng-click="goToCurrentTransaction()">current Transaction</md-button>
-      <md-button class="md-raised md-warn"  ng-disabled="{{contractButton}}" ng-click="goToCreateContract()"> Create Contract</md-button>
+      <md-button class="md-raised md-warn"  ng-hide="{{contractButton}}" ng-click="goToCreateContract()"> Create Contract</md-button>
        <md-button class="md-raised md-warn" ng-click="goToBalanceInfo()">Balance info</md-button>
         <md-button class="md-raised md-warn" ng-click="goToAllContracts()">All contracts</md-button>
-
  </section>
 
 <ui-view></ui-view>

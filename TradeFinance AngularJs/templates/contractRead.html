@@ -1,0 +1,74 @@
+<div layout="row" layout-align="center">
+
+    <md-card style="width:80%;height:60%">
+        <md-card-content>
+            <form name="contractForm" >
+                <div layout="column">
+
+                <div layout="row" layout-align="start" flex>
+                    <md-input-container class="inputContainers" flex="30">
+                    <label>ContractID</label>
+                  <input type="text" name="contractDescription" value ={{contract.contractId}} >
+                    </md-input-container>
+
+                    <md-input-container class="inputContainers" flex="70">
+                      <label>Contract Description</label>
+                      <input type="text" name="contractDescription" value ={{contract.contractDescription}} >
+                    </md-input-container>
+                </div>
+
+                  <div layout="row" layout-align="start" flex>
+
+                    <md-input-container class="inputContainers" flex="50">
+                      <label>ExporterAccount</label>
+                      <input type="text" name="exporterAccount"  value ={{contract.exporterId}}>
+                      </md-input-container>
+
+                      <md-input-container class="inputContainers" flex="50">
+                          <label>Contract Value</label>
+                    <input type="text" name="exporterAccount"  value ={{contract.value}}>
+                      </md-input-container>
+
+                  </div>
+
+                  <div layout="row" layout-align="start" flex>
+                    <md-input-container class="inputContainers" flex="50">
+                      <label>Custom</label>
+                      <input type="text" name="customAccountId" value ={{contract.customId}}>
+                      </md-input-container>
+
+                      <md-input-container class="inputContainers" flex="50">
+                        <label>InsuranceId</label>
+                        <input type="text" name="insuranceId" value ={{contract.insuranceId}} >
+                        </md-input-container>
+
+                  </div>
+
+                  <div layout="row" layout-align="start" flex>
+                    <md-input-container class="inputContainers" flex="50">
+                      <label>Importer</label>
+                      <input type="text" name="importerAccountId" value ={{contract.importerId}}>
+                      </md-input-container>
+
+                      <md-input-container class="inputContainers" flex="50">
+                        <label>ImporterBank</label>
+                        <input type="text" name="importerBankId"  value ={{contract.importerBankId}}>
+                        </md-input-container>
+                  </div>
+                  <div layout="row" layout-align="start" flex>
+                    <md-input-container class="inputContainers" flex="50">
+                      <label>Port of Loading </label>
+                      <input type="text" name="portOfLoading"  value ={{contract.portOfLoading}} >
+                      </md-input-container>
+
+                      <md-input-container class="inputContainers" flex="50">
+                        <label>Port of Entry</label>
+                        <input type="text" name="portOfEntry"  value ={{contract.portOfEntry}}>
+                        </md-input-container>
+                  </div>
+
+                </div>
+            </form>
+        </md-card-content>
+    </md-card>
+</div>

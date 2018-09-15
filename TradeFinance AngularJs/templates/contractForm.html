@@ -10,8 +10,6 @@
             <form name="contractForm" >
                 <div layout="column">
 
-
-
                 <div layout="row" layout-align="start" flex>
                   <md-input-container class="inputContainers" flex="30">
                     <label>ContractID</label>
@@ -35,10 +33,7 @@
 
                 </div>
 
-
-
                   <div layout="row" layout-align="start" flex>
-
 
                     <md-input-container class="inputContainers" flex="50">
                       <label>ExporterAccount</label>
@@ -105,6 +100,7 @@
                         </md-input-container>
 
                   </div>
+
                   <div layout="row" layout-align="start" flex>
                     <md-input-container class="inputContainers" flex="50">
                       <label>Port of Loading </label>
@@ -129,7 +125,7 @@
                   </div>
 
                         <md-card-actions layout="row" layout-align="center">
-                            <md-button ng-click="createContract()" ng-disabled="contractForm.$invalid" class="md-raised md-primary">create</md-button>
+                            <md-button ng-click="getRegistered()" ng-disabled="contractForm.$invalid" class="md-raised md-primary">create</md-button>
                         </md-card-actions>
 
                 </div>
