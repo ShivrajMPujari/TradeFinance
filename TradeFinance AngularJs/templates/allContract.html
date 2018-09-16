@@ -16,15 +16,25 @@
       <td class="tableTd2">{{contract.contractDescription}} </td>
       <td> <md-button ng-click ="showAdvanced($event,contract)">  View  </md-button> </td>
       <td ng-if = "contract.exporterCheck == true">  <md-icon md-svg-icon="assets/baseline-done-24px.svg"></md-icon></td>
-      <td ng-if = "contract.exporterCheck == false">  <md-icon md-svg-icon="assets/baseline-clear-24px.svg"></md-icon></td>
-      <td ng-if = "contract.customCheck == true">  <md-icon md-svg-icon="assets/baseline-done-24px.svg"></md-icon></td>
-      <td ng-if = "contract.customCheck == false">  <md-icon md-svg-icon="assets/baseline-clear-24px.svg"></md-icon></td>
+      <td ng-if = "contract.exporterCheck == false && contract.completion == true">  <md-icon md-svg-icon="assets/baseline-clear-24px.svg"></md-icon></td>
+      <td ng-if = "contract.exporterCheck == false && contract.completion == false">  <md-icon md-svg-icon="assets/baseline-loop-24px.svg"></md-icon></td>
+
+      <td ng-if = "contract.customCheck == true  ">  <md-icon md-svg-icon="assets/baseline-done-24px.svg"></md-icon></td>
+      <td ng-if = "contract.customCheck == false  && contract.completion == true">  <md-icon md-svg-icon="assets/baseline-clear-24px.svg"></md-icon></td>
+      <td ng-if = "contract.customCheck == false  && contract.completion == false">  <md-icon md-svg-icon="assets/baseline-loop-24px.svg"></md-icon></td>
+
       <td ng-if = "contract.insuranceCheck == true">  <md-icon md-svg-icon="assets/baseline-done-24px.svg"></md-icon></td>
-      <td ng-if = "contract.insuranceCheck == false">  <md-icon md-svg-icon="assets/baseline-clear-24px.svg"></md-icon></td>
+      <td ng-if = "contract.insuranceCheck == false  && contract.completion == true ">  <md-icon md-svg-icon="assets/baseline-clear-24px.svg"></md-icon></td>
+      <td ng-if = "contract.insuranceCheck == false  && contract.completion == false ">  <md-icon md-svg-icon="assets/baseline-loop-24px.svg"></md-icon></td>
+
       <td ng-if = "contract.importerCheck == true">  <md-icon md-svg-icon="assets/baseline-done-24px.svg"></md-icon></td>
-      <td ng-if = "contract.importerCheck == false">  <md-icon md-svg-icon="assets/baseline-clear-24px.svg"></md-icon></td>
+      <td ng-if = "contract.importerCheck == false && contract.completion == true ">  <md-icon md-svg-icon="assets/baseline-clear-24px.svg"></md-icon></td>
+      <td ng-if = "contract.importerCheck == false && contract.completion == false ">  <md-icon md-svg-icon="assets/baseline-loop-24px.svg"></md-icon></td>
+
       <td ng-if = "contract.importerBankCheck == true">  <md-icon md-svg-icon="assets/baseline-done-24px.svg"></md-icon></td>
-      <td ng-if = "contract.importerBankCheck == false">  <md-icon md-svg-icon="assets/baseline-clear-24px.svg"></md-icon></td>
+      <td ng-if = "contract.importerBankCheck == false && contract.completion == true">  <md-icon md-svg-icon="assets/baseline-clear-24px.svg"></md-icon></td>
+      <td ng-if = "contract.importerBankCheck == false && contract.completion == false">  <md-icon md-svg-icon="assets/baseline-loop-24px.svg"></md-icon></td>
+
     </tr>
 
   </table>

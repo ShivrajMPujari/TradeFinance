@@ -38,7 +38,7 @@ app.config(function($stateProvider,$urlRouterProvider){
       )
 
       .state('home.currentTransaction',{
-        url:'/createContract',
+        url:'/currentTransaction',
         templateUrl:'templates/currentTransaction.html',
         controller:'homeController'
       }

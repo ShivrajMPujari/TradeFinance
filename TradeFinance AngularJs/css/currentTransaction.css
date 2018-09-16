@@ -1,7 +1,33 @@
-.currentTransactionDiv{
-margin-top: 150px;
+
+.activeContractsDiv{
+
+    height: 150px;
+    border-bottom: 1px solid black;
+    padding-top: 40px;
+    padding-bottom : 40px;
+    margin:auto;
+
 }
 
-.activeAccount{
-  background-color: red;
+.currentTransactionDiv{
+  height: 80%;
+  width: 80%;
+  margin-top: 80px;
+  margin: auto;
+}
+
+.acceptButton{
+background-color:#99ccff;
+}
+
+.success{
+  background-color: #99ff99;
+}
+
+.failed{
+    background-color: #ff8080;
+}
+
+.notActive{
+
 }

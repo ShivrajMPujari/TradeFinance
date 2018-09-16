@@ -1,4 +1,4 @@
-app.controller('homeController',function($state,$scope,$http,$mdDialog){
+app.controller('homeController',function($state,$scope,$http,$mdDialog,$mdToast){
 
   var userString = localStorage.getItem("user");
   $scope.contractValues = [3000,5000,8000,10000];
@@ -51,6 +51,40 @@ $state.go('login');
 
 }
 
+
+$scope.goToCurrentTransaction = function(){
+
+  let mydata = {};
+  let urlAllContracts = 'http://localhost:8080/user/getAllContract';
+
+  let config = {
+    headers : {
+                 'Content-Type': 'application/json',
+                 'token':localStorage.getItem("token")
+             }
+  };
+
+  $http.post(urlAllContracts,mydata,config).then(function(response){
+
+    console.log("success");
+    console.log(response);
+    $scope.allContracts = response.data.contracts;
+      $state.go('home.currentTransaction');
+  },
+
+  function(reason){
+    console.log("failed");
+    console.log(reason);
+    $state.go('login');
+
+  }
+
+);
+
+}
+
+
+
   $scope.createContract = function(){
 
     let contractData = {
@@ -79,13 +113,17 @@ $state.go('login');
 
     $http.post(contractCreationUrl,contractData,config).then(
       function(response){
-        console.log("success")
+        console.log("success");
         console.log(response);
+        let message="Contract has been created successfully...."
+        $scope.showToastResponse(message);
   //      localStorage.setItem("contractId",response.data.contract.contractId);
       },
       function(reason){
         console.log("failed");
         console.log(reason);
+        let message="Failed to create contract...."
+        $scope.showToastResponse(message);
         $state.go('login');
       }
 
@@ -96,36 +134,7 @@ $state.go('login');
   // $scope.goToAllContracts = function(){
   //   $state.go('home.history');
   // }
-  $scope.goToCurrentTransaction = function(){
 
-    let mydata = {};
-    let urlAllContracts = 'http://localhost:8080/user/getAllContract';
-
-    let config = {
-      headers : {
-                   'Content-Type': 'application/json',
-                   'token':localStorage.getItem("token")
-               }
-    };
-
-    $http.post(urlAllContracts,mydata,config).then(function(response){
-
-      console.log("success");
-      console.log(response);
-      $scope.allContracts = response.data.contracts;
-        $state.go('home.currentTransaction');
-    },
-
-    function(reason){
-      console.log("failed");
-      console.log(reason);
-      $state.go('login');
-
-    }
-
-  );
-
-  }
 
 
 
@@ -189,6 +198,62 @@ function DialogController($scope, items) {
     };
 }
 
+$scope.showToastResponse = function(message) {
+   $mdToast.show (
+      $mdToast.simple()
+      .textContent(message)
+      .hideDelay(4000)
+   );
+ }
 
+
+$scope.updateContract = function(contract){
+  $scope.disableAccept = true;
+  console.log("updateContract");
+  let contractData = contract;
+  let updateContracturl = 'http://localhost:8080/user/updateContract';
+
+  let config = {
+    headers : {
+                 'Content-Type': 'application/json',
+                 'token':localStorage.getItem("token")
+             }
+  };
+
+$http.post(updateContracturl,contractData,config).then(
+
+function(response){
+console.log("success");
+console.log(response);
+let message = "Transaction success";
+$scope.showToastResponse(message);
+$scope.goToCurrentTransaction();
+},
+function(reason){
+let message = "Transaction failed";
+$scope.disableAccept = true;
+console.log("failed");
+$scope.showToastResponse(message);
+if(contract.customCheck == false){
+  $scope.customClass="failed";
+}
+
+if(contract.insuranceCheck == false){
+  $scope.insuranceClass="failed";
+}
+
+if(contract.importerCheck == false){
+  $scope.importerClass="failed";
+}
+
+if(contract.importerBankCheck == false){
+  $scope.importerBankClass="failed";
+}
+
+}
+);
+
+
+}
 
 });
