@@ -92,9 +92,6 @@ app.controller('loginController', function($scope, $state , $http ,$mdToast ,$do
       $state.go('forgotPassword');
     }
 
-
-
-
     $scope.forgotPassword= function (){
 
       var data ={

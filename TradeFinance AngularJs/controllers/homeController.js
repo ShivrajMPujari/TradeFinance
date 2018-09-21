@@ -98,10 +98,12 @@ $scope.goToCurrentTransaction = function(){
       insuranceId:$scope.contractInsuranceId,
       value:$scope.contractFormValue,
       portOfLoading:$scope.contractPortOfLoading,
-      portOfEntry:$scope.contractPortOfEntry
-
+      portOfEntry:$scope.contractPortOfEntry,
+      letterOfCredit:$scope.contractLetterOfCredit.base64.toString(),
+      billOfLading:$scope.contractbillOfLading.base64.toString()
     };
 
+    console.log(contractData);
     let contractCreationUrl = 'http://localhost:8080/user/createContract';
 
     let config = {
@@ -255,5 +257,60 @@ if(contract.importerBankCheck == false){
 
 
 }
+
+$scope.getDocument= function(ev,url){
+
+let documentUrl = url;
+
+let config = {
+  headers : {
+               'Content-Type': 'application/json',
+               'token':localStorage.getItem("token")
+           }
+};
+
+$http.get(documentUrl,config).then(
+
+function(response){
+  console.log(response);
+
+
+  $mdDialog.show({
+      controller: ImageController,
+      templateUrl: 'templates/fileUpload.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      locals: {
+          items: response.data
+      },
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+  })
+
+
+},function(reason){
+  console.log(reason);
+}
+
+);
+
+
+
+
+}
+
+function ImageController($scope, items) {
+    $scope.imageData = items;
+    // $scope.star=stars;
+
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
+
+    $scope.hide = function() {
+        $mdDialog.hide();
+    };
+}
+
 
 });

@@ -1,4 +1,4 @@
-var app = angular.module("MyApp",['ngMessages', 'ngMaterial','ui.router']);
+var app = angular.module("MyApp",['ngMessages', 'ngMaterial','ui.router','naif.base64']);
 
 app.config(function($stateProvider,$urlRouterProvider){
 

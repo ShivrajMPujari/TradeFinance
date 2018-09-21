@@ -2,6 +2,13 @@
 
   <div ng-repeat="contract in allContracts|activeContracts" layout-align="center center" class="activeContractsDiv">
 
+    <div>
+
+      ContractId:- <strong> {{contract.contractId}}</strong><br>
+      See info:- <md-button ng-click ="showAdvanced($event,contract)">  View  </md-button>
+
+    </div>
+
     <div ng-if="contract.pointer == userModel.accountNumber" >
       <strong>Press accept to process the transaction ahead:-</strong>
       <md-button class="acceptButton" ng-click="updateContract(contract)" ng-disabled={{disableAccept}} > Accept </md-button>
@@ -26,6 +33,9 @@
           <md-button class="button" >Completed</md-button> -->
 
     </section>
+
+
+
   </div>
 
 </div>

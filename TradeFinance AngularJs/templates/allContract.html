@@ -5,16 +5,22 @@
       <th> ContractID </th>
       <th> Details </th>
       <th> Contract Info </th>
+      <th> Bill of Lading </th>
+      <th> Letter of credit</th>
       <th > Exporter </th>
       <th > Custom </th>
       <th > Insurance </th>
       <th > Importer </th>
       <th > ImporterBank </th>
+
     </tr>
     <tr ng-repeat="contract in allContracts">
       <td> {{contract.contractId}}</td>
       <td class="tableTd2">{{contract.contractDescription}} </td>
       <td> <md-button ng-click ="showAdvanced($event,contract)">  View  </md-button> </td>
+      <td> <md-button ng-click ="getDocument($event,contract.billOfLading)">  View  </md-button> </td>
+      <td> <md-button ng-click ="getDocument($event,contract.letterOfCredit)">  View  </md-button> </td>
+
       <td ng-if = "contract.exporterCheck == true">  <md-icon md-svg-icon="assets/baseline-done-24px.svg"></md-icon></td>
       <td ng-if = "contract.exporterCheck == false && contract.completion == true">  <md-icon md-svg-icon="assets/baseline-clear-24px.svg"></md-icon></td>
       <td ng-if = "contract.exporterCheck == false && contract.completion == false">  <md-icon md-svg-icon="assets/baseline-loop-24px.svg"></md-icon></td>
@@ -34,6 +40,7 @@
       <td ng-if = "contract.importerBankCheck == true">  <md-icon md-svg-icon="assets/baseline-done-24px.svg"></md-icon></td>
       <td ng-if = "contract.importerBankCheck == false && contract.completion == true">  <md-icon md-svg-icon="assets/baseline-clear-24px.svg"></md-icon></td>
       <td ng-if = "contract.importerBankCheck == false && contract.completion == false">  <md-icon md-svg-icon="assets/baseline-loop-24px.svg"></md-icon></td>
+
 
     </tr>
 
