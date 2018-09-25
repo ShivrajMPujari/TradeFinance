@@ -17,7 +17,7 @@ app.controller('homeController',function($state,$scope,$http,$mdDialog,$mdToast)
   $scope.goToBalanceInfo = function(){
 
    let balancedata ={};
-   let getBalanceUrl ='http://localhost:8080/user/getBalance';
+   let getBalanceUrl ='http://localhost:8081/user/getBalance';
    let config = {
      headers : {
                   'Content-Type': 'application/json',
@@ -32,6 +32,7 @@ app.controller('homeController',function($state,$scope,$http,$mdDialog,$mdToast)
        var currentBalanceJson = response.data;
     $scope.userModel.balance = currentBalanceJson.balance;
     console.log($scope.userModel.balance);
+       $state.go('home.balance');
      },
      function(reason){
        console.log("failed");
@@ -55,7 +56,7 @@ $state.go('login');
 $scope.goToCurrentTransaction = function(){
 
   let mydata = {};
-  let urlAllContracts = 'http://localhost:8080/user/getAllContract';
+  let urlAllContracts = 'http://localhost:8081/user/getAllContract';
 
   let config = {
     headers : {
@@ -75,7 +76,7 @@ $scope.goToCurrentTransaction = function(){
   function(reason){
     console.log("failed");
     console.log(reason);
-    $state.go('login');
+    $state.go('home.currentTransaction');
 
   }
 
@@ -104,7 +105,7 @@ $scope.goToCurrentTransaction = function(){
     };
 
     console.log(contractData);
-    let contractCreationUrl = 'http://localhost:8080/user/createContract';
+    let contractCreationUrl = 'http://localhost:8081/user/createContract';
 
     let config = {
       headers : {
@@ -126,13 +127,60 @@ $scope.goToCurrentTransaction = function(){
         console.log(reason);
         let message="Failed to create contract...."
         $scope.showToastResponse(message);
-        $state.go('login');
       }
 
     );
 
   }
 
+
+  $scope.consensus = function (){
+
+    let contractData = {
+
+    contractId :  $scope.contractFormID,
+    contractDescription:$scope.contractFormDescription,
+      importerId:$scope.contractImporterAccountId,
+      exporterId:$scope.userModel.accountNumber,
+      customId:$scope.contractCustomAccountId,
+      importerBankId:$scope.contractImporterBankAccountId,
+      insuranceId:$scope.contractInsuranceId,
+      value:$scope.contractFormValue,
+      portOfLoading:$scope.contractPortOfLoading,
+      portOfEntry:$scope.contractPortOfEntry,
+      letterOfCredit:$scope.contractLetterOfCredit.base64.toString(),
+      billOfLading:$scope.contractbillOfLading.base64.toString()
+    };
+
+    console.log(contractData);
+    let contractCreationUrl = 'http://localhost:8081/user/consensus';
+
+    let config = {
+      headers : {
+                   'Content-Type': 'application/json',
+                   'token':localStorage.getItem("token")
+               }
+    };
+
+    $http.post(contractCreationUrl,contractData,config).then(
+      function(response){
+        console.log("success");
+        console.log(response);
+        let message="Contract has been created successfully...."
+        $scope.showToastResponse(message);
+  //      localStorage.setItem("contractId",response.data.contract.contractId);
+      },
+      function(reason){
+        console.log("failed");
+        console.log(reason);
+        let message="Failed to create contract...."
+        $scope.showToastResponse(message);
+      }
+
+    );
+
+
+  }
   // $scope.goToAllContracts = function(){
   //   $state.go('home.history');
   // }
@@ -143,7 +191,7 @@ $scope.goToCurrentTransaction = function(){
   $scope.goToAllContracts = function (){
 
       let mydata = {};
-      let urlAllContracts = 'http://localhost:8080/user/getAllContract';
+      let urlAllContracts = 'http://localhost:8081/user/getAllContract';
 
       let config = {
         headers : {
@@ -165,7 +213,7 @@ $scope.goToCurrentTransaction = function(){
           console.log("failed");
 
           console.log(reason);
-          $state.go('login');
+          $state.go('home.history');
         }
 
       );
@@ -213,7 +261,7 @@ $scope.updateContract = function(contract){
   $scope.disableAccept = true;
   console.log("updateContract");
   let contractData = contract;
-  let updateContracturl = 'http://localhost:8080/user/updateContract';
+  let updateContracturl = 'http://localhost:8081/user/updateContract';
 
   let config = {
     headers : {

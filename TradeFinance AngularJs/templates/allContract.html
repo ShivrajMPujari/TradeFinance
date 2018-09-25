@@ -3,7 +3,6 @@
   <table>
     <tr >
       <th> ContractID </th>
-      <th> Details </th>
       <th> Contract Info </th>
       <th> Bill of Lading </th>
       <th> Letter of credit</th>
@@ -16,7 +15,6 @@
     </tr>
     <tr ng-repeat="contract in allContracts">
       <td> {{contract.contractId}}</td>
-      <td class="tableTd2">{{contract.contractDescription}} </td>
       <td> <md-button ng-click ="showAdvanced($event,contract)">  View  </md-button> </td>
       <td> <md-button ng-click ="getDocument($event,contract.billOfLading)">  View  </md-button> </td>
       <td> <md-button ng-click ="getDocument($event,contract.letterOfCredit)">  View  </md-button> </td>

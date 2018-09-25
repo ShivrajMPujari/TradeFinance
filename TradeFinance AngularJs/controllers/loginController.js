@@ -17,7 +17,7 @@ app.controller('loginController', function($scope, $state , $http ,$mdToast ,$do
           password:$scope.userPassword
         }
 
-        var loginUrl ='http://localhost:8080/user/login';
+        var loginUrl ='http://localhost:8081/user/login';
         var responseObj={};
 
         $http.post(loginUrl,formData).then(
@@ -68,7 +68,7 @@ app.controller('loginController', function($scope, $state , $http ,$mdToast ,$do
           "bank":$scope.registerBank,
         }
 
-        var registerUrl = 'http://localhost:8080/user/register';
+        var registerUrl = 'http://localhost:8081/user/register';
         $http.post(registerUrl,registerFormData).then( function(response){
           console.log(response);
           $state.go('login');
@@ -98,7 +98,7 @@ app.controller('loginController', function($scope, $state , $http ,$mdToast ,$do
         email:$scope.emailForForgotPassword
       }
 
-      var forgotPasswordUrl = 'http://localhost:8080/user/forgotPassword';
+      var forgotPasswordUrl = 'http://localhost:8081/user/forgotPassword';
 
       $http.post(forgotPasswordUrl,data).then(function(response){
         console.log(response);
@@ -127,7 +127,7 @@ app.controller('loginController', function($scope, $state , $http ,$mdToast ,$do
         uuid:$stateParams.id
 
       }
-      var resetPasswordUrl ='http://localhost:8080/user/resetPassword';
+      var resetPasswordUrl ='http://localhost:8081/user/resetPassword';
       $http.post(resetPasswordUrl,resetPasswordData).then(
         function(response){
           console.log(response);

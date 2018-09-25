@@ -66,7 +66,7 @@
                       </md-input-container>
 
                       <md-input-container class="inputContainers" flex="50">
-                        <label>InsuranceId</label>
+                        <label>Insurance</label>
                         <input type="text" name="insuranceId"  ng-model="contractInsuranceId" required>
                         <div ng-messages="contractForm.insuranceId.$error">
                             <div ng-message="required">
@@ -126,21 +126,21 @@
 
                   <div layout="row" layout-align="start" flex>
                   <md-input-container flex="50">
-                    <label for="file1">Letter Of Credit</label>
-                 <input type="file" ng-model="contractLetterOfCredit" name="file1" base-sixty-four-input   maxsize="1000" accept="image/*">
+                    <label for="file1" class="fileLabel">Letter Of Credit</label>
+                 <input class="fileInput" type="file" ng-model="contractLetterOfCredit" name="file1" base-sixty-four-input required  maxsize="1000" accept="image/*">
 
                 </md-input-container>
 
 
                 <md-input-container flex="50">
-                <label for="file2">Bill of Lading</label>
-               <input type="file" ng-model="contractbillOfLading" name="file2" base-sixty-four-input    maxsize="1000" accept="image/*">
+                <label for="file2" class="fileLabel">Bill of Lading</label>
+               <input class="fileInput" type="file" ng-model="contractbillOfLading" name="file2" base-sixty-four-input required   maxsize="1000" accept="image/*">
               </md-input-container>
 
                   </div>
 
                         <md-card-actions layout="row" layout-align="center">
-                            <md-button ng-click="createContract()" ng-disabled="contractForm.$invalid" class="md-raised md-primary">create</md-button>
+                            <md-button ng-click="consensus()" ng-disabled="contractForm.$invalid" class="md-raised md-primary">create</md-button>
                         </md-card-actions>
 
                 </div>
